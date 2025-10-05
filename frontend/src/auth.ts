@@ -1,6 +1,6 @@
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import NextAuth from "next-auth";
-import { prisma } from "../prisma";
+import { prisma } from "@/prisma";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { comparePassword } from "./lib/password-utils";
 
