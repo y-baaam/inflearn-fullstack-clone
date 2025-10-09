@@ -78,9 +78,9 @@ model Course {
   id               String   @id @default(uuid())
   slug             String   @unique
   title            String
-  shortDescription String   @map("short_description")
-  description      String   @map("description")
-  thumbnailUrl     String   @map("thumbnail_url")
+  shortDescription String?  @map("short_description")
+  description      String?  @map("description")
+  thumbnailUrl     String?  @map("thumbnail_url")
   price            Int?     @default(0)
   discountPrice    Int?     @map("discount_price")
   level            String   @default("BEGINNER")
