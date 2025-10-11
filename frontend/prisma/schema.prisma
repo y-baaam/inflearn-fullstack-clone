@@ -78,12 +78,13 @@ model Course {
   id               String   @id @default(uuid())
   slug             String   @unique
   title            String
-  shortDescription String   @map("short_description")
-  description      String   @map("description")
-  thumbnailUrl     String   @map("thumbnail_url")
+  shortDescription String?  @map("short_description")
+  description      String?  @map("description")
+  thumbnailUrl     String?  @map("thumbnail_url")
   price            Int?     @default(0)
   discountPrice    Int?     @map("discount_price")
   level            String   @default("BEGINNER")
+  status           String   @default("DRAFT")
   instructorId     String   @map("instructor_id")
   isPublished      Boolean  @default(false) @map("is_published")
   createdAt        DateTime @default(now()) @map("created_at")
@@ -92,7 +93,7 @@ model Course {
   sections    Section[]
   lectures    Lecture[]
   instructor  User               @relation(fields: [instructorId], references: [id])
-  category    CourseCategory[]
+  categories  CourseCategory[]
   enrollments CourseEnrollment[]
   reviews     CourseReview[]
   questions   CourseQuestion[]
