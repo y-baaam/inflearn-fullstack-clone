@@ -16,8 +16,8 @@ export class Lecture {
   @ApiProperty({ type: Number })
   order: number;
 
-  @ApiProperty({ type: Number })
-  duration: number;
+  @ApiPropertyOptional({ type: Number })
+  duration?: number;
 
   @ApiProperty({ type: Boolean })
   isPreview: boolean;

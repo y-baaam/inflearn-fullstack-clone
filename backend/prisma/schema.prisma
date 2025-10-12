@@ -127,7 +127,7 @@ model Lecture {
   title            String
   description      String?
   order            Int
-  duration         Int
+  duration         Int?
   isPreview        Boolean  @default(false) @map("is_preview")
   sectionId        String   @map("section_id")
   courseId         String   @map("course_id")
@@ -135,8 +135,8 @@ model Lecture {
   createdAt        DateTime @default(now()) @map("created_at")
   updatedAt        DateTime @updatedAt @map("updated_at")
 
-  section    Section           @relation(fields: [sectionId], references: [id])
-  course     Course            @relation(fields: [courseId], references: [id])
+  section    Section           @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+  course     Course            @relation(fields: [courseId], references: [id], onDelete: Cascade)
   activities LectureActivity[]
 
   @@map("lectures")
