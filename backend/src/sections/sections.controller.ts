@@ -17,12 +17,14 @@ import {
   ApiOkResponse,
   ApiOperation,
   ApiParam,
+  ApiTags,
 } from '@nestjs/swagger';
 import { CreateSectionDto } from './dto/create-section.dto';
 import type { Request } from 'express';
 import { Section as SectionEntity } from 'src/_gen/prisma-class/section';
 import { UpdateSectionDto } from './dto/update-section.dto';
 
+@ApiTags('섹션')
 @Controller('sections')
 export class SectionsController {
   constructor(private readonly sectionsService: SectionsService) {}
