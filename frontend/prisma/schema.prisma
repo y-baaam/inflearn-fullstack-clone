@@ -81,7 +81,7 @@ model Course {
   shortDescription String?  @map("short_description")
   description      String?  @map("description")
   thumbnailUrl     String?  @map("thumbnail_url")
-  price            Int?     @default(0)
+  price            Int      @default(0)
   discountPrice    Int?     @map("discount_price")
   level            String   @default("BEGINNER")
   status           String   @default("DRAFT")
