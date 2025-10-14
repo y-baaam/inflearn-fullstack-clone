@@ -26,8 +26,8 @@ export class Course {
   @ApiPropertyOptional({ type: String })
   thumbnailUrl?: string;
 
-  @ApiPropertyOptional({ type: Number })
-  price?: number;
+  @ApiProperty({ type: Number })
+  price: number;
 
   @ApiPropertyOptional({ type: Number })
   discountPrice?: number;
