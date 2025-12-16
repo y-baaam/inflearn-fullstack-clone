@@ -6,7 +6,14 @@ import {
   coursesControllerFindAll,
   coursesControllerFindOne,
   coursesControllerUpdate,
+  lecturesControllerCreate,
+  lecturesControllerDelete,
+  lecturesControllerUpdate,
+  sectionsControllerCreate,
+  sectionsControllerDelete,
+  sectionsControllerUpdate,
   UpdateCourseDto,
+  UpdateSectionDto,
 } from "@/generated/openapi-client";
 
 export const getAllCategories = async () => {
@@ -21,8 +28,11 @@ export const getAllInstructorCourses = async () => {
   return { data, error };
 };
 
-export const getCourseById = async (id: string) => {
-  const { data, error } = await coursesControllerFindOne({ path: { id } });
+export const getCourseById = async (id: string, include?: string) => {
+  const { data, error } = await coursesControllerFindOne({
+    path: { id },
+    query: { include: include ?? "sections,lectures" },
+  });
 
   return { data, error };
 };
@@ -46,5 +56,74 @@ export const updateCourse = async (
     body: updateCourseDto,
   });
 
+  return { data, error };
+};
+
+export const createSection = async (courseId: string, title: string) => {
+  const { data, error } = await sectionsControllerCreate({
+    path: { courseId },
+    body: { title },
+  });
+  return { data, error };
+};
+
+export const deleteSection = async (sectionId: string) => {
+  const { data, error } = await sectionsControllerDelete({
+    path: { sectionId },
+  });
+  return { data, error };
+};
+
+export const createLecture = async (sectionId: string, title: string) => {
+  const { data, error } = await lecturesControllerCreate({
+    path: { sectionId },
+    body: { title },
+  });
+  return { data, error };
+};
+
+export const deleteLecture = async (lectureId: string) => {
+  const { data, error } = await lecturesControllerDelete({
+    path: { lectureId },
+  });
+  return { data, error };
+};
+
+export const updateSectionTitle = async (sectionId: string, title: string) => {
+  const { data, error } = await sectionsControllerUpdate({
+    path: {
+      sectionId,
+    },
+    body: {
+      title,
+    } as UpdateSectionDto,
+  });
+  return { data, error };
+};
+
+export const updateLectureTitle = async (lectureId: string, title: string) => {
+  const { data, error } = await lecturesControllerUpdate({
+    path: {
+      lectureId,
+    },
+    body: {
+      title,
+    },
+  });
+  return { data, error };
+};
+
+export const updateLecturePreview = async (
+  lectureId: string,
+  isPreview: boolean
+) => {
+  const { data, error } = await lecturesControllerUpdate({
+    path: {
+      lectureId,
+    },
+    body: {
+      isPreview,
+    },
+  });
   return { data, error };
 };
